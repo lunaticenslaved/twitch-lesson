@@ -1,8 +1,11 @@
 import { PropsWithChildren } from 'react';
 
 import { ClerkProvider } from '@clerk/nextjs';
+import { dark } from '@clerk/themes';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+
+import { ThemeProvider } from '@/components/theme-context';
 
 import './globals.css';
 
@@ -15,9 +18,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <ClerkProvider>
+    <ClerkProvider appearance={{ baseTheme: dark }}>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <ThemeProvider attribute="class" forcedTheme="dark" storageKey="gamehub-theme">
+            {children}
+          </ThemeProvider>
+        </body>
       </html>
     </ClerkProvider>
   );

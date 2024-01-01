@@ -1,5 +1,12 @@
 import { PropsWithChildren } from 'react';
 
-export default function Layout({ children }: PropsWithChildren) {
-  return <main className="flex items-center justify-center h-full w-full">{children}</main>;
+import { Logo } from './_components/logo';
+
+export default function AuthLayout({ children }: PropsWithChildren) {
+  return (
+    <main className="flex items-center flex-col justify-center h-full w-full space-y-6">
+      <Logo />
+      {children}
+    </main>
+  );
 }
