@@ -1,22 +1,23 @@
-import { db } from "@/lib/db";
-import { currentUser } from "@clerk/nextjs";
+import { currentUser } from '@clerk/nextjs';
 
-export async function getUser() {
-    const self = await currentUser();
+import { db } from '@/lib/db';
 
-    if (!self || !self.username) {
-        throw new Error('Unauthorized!')
-    }
+export async function getSelf() {
+  const self = await currentUser();
 
-    const user = await db.user.findUnique({
-        where: {
-            externalUserId: self.id
-        }
-    })
+  if (!self || !self.username) {
+    throw new Error('Unauthorized!');
+  }
 
-    if (!user) {
-        throw new Error('Not fount')
-    }
+  const user = await db.user.findUnique({
+    where: {
+      externalUserId: self.id,
+    },
+  });
 
-    return user;
+  if (!user) {
+    throw new Error('Not fount');
+  }
+
+  return user;
 }

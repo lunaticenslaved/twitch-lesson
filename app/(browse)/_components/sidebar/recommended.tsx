@@ -34,6 +34,8 @@ export function Recommended({ data }: RecommendedProps) {
 
 export function RecommendedSkeleton() {
   return (
-    <ul className="px-2">{[...Array(3).map((_, index) => <UserItemSkeleton key={index} />)]}</ul>
+    <ul className="px-2">
+      {[...Array.from({ length: 3 }).map((_, index) => <UserItemSkeleton key={index} />)]}
+    </ul>
   );
 }

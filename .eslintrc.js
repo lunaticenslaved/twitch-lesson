@@ -4,7 +4,6 @@ module.exports = {
   ignorePatterns: ['dist', 'node_modules'],
   rules: {
     'no-console': 0,
-    'react/no-unknown-property': ['error', { ignore: ['css'] }],
     'react/no-unescaped-entities': 0,
   },
 };
