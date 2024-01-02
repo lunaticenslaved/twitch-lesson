@@ -8,7 +8,7 @@ export async function Actions() {
   const user = await currentUser();
 
   return (
-    <div className="felx items-center justify-end gap-x-2 lg:ml-2">
+    <div className="flex items-center justify-end gap-x-2 lg:ml-2">
       {!user ? (
         <SignInButton>
           <Button variant="primary" size="sm">
