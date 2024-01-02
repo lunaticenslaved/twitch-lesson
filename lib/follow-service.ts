@@ -74,10 +74,12 @@ export async function unfollowUser(userId: string) {
     throw new Error('User not found');
   }
 
-  const existingFollow = await db.follow.findFirst({
+  const existingFollow = await db.follow.findUnique({
     where: {
-      followerId: self.id,
-      followingId: userId,
+      followerId_followingId: {
+        followerId: self.id,
+        followingId: userId,
+      },
     },
   });
 
@@ -100,6 +102,13 @@ export async function getFollowedUsers() {
     return await db.follow.findMany({
       where: {
         followerId: self.id,
+        following: {
+          blocking: {
+            none: {
+              blockedId: self.id,
+            },
+          },
+        },
       },
       include: {
         following: true,

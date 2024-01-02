@@ -11,7 +11,9 @@ export async function Actions() {
     <div className="felx items-center justify-end gap-x-2 lg:ml-2">
       {!user ? (
         <SignInButton>
-          <Button variant="primary">Login</Button>
+          <Button variant="primary" size="sm">
+            Login
+          </Button>
         </SignInButton>
       ) : (
         <div className="flex items-center gap-x-4">

@@ -14,6 +14,9 @@ export async function getRecommended() {
           {
             NOT: { followedBy: { some: { followerId: self.id } } },
           },
+          {
+            NOT: { blockedBy: { some: { blockerId: self.id } } },
+          },
         ],
       },
       orderBy: {
