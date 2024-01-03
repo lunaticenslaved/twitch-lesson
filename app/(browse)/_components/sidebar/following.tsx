@@ -7,7 +7,7 @@ import { useSidebar } from '@/store/use-sidebar';
 import { UserItem, UserItemSkeleton } from './user-item';
 
 interface FollowingProps {
-  data: Array<Follow & { following: User & { stream: Stream | null } }>;
+  data: Array<Follow & { following: User & { stream: Pick<Stream, 'isLive'> | null } }>;
 }
 
 export function Following({ data }: FollowingProps) {

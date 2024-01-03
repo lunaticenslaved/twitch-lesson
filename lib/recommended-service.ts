@@ -20,7 +20,11 @@ export async function getRecommended() {
         ],
       },
       include: {
-        stream: true
+        stream: {
+          select: {
+            isLive: true
+          }
+        }
       },
       orderBy: {
         createdAt: 'desc',
@@ -29,7 +33,11 @@ export async function getRecommended() {
   } else {
     return await db.user.findMany({
       include: {
-        stream: true
+        stream: {
+          select: {
+            isLive: true
+          }
+        }
       },
       orderBy: {
         createdAt: 'desc',

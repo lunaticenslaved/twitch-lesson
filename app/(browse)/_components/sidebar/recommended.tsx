@@ -7,7 +7,7 @@ import { useSidebar } from '@/store/use-sidebar';
 import { UserItem, UserItemSkeleton } from './user-item';
 
 interface RecommendedProps {
-  data: Array<User & { stream: Stream | null }>;
+  data: Array<User & { stream: Pick<Stream, 'isLive'> | null }>;
 }
 
 export function Recommended({ data }: RecommendedProps) {
