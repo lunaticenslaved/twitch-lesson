@@ -1,13 +1,13 @@
 'use client';
 
-import { Follow, User } from '@prisma/client';
+import { Follow, Stream, User } from '@prisma/client';
 
 import { useSidebar } from '@/store/use-sidebar';
 
 import { UserItem, UserItemSkeleton } from './user-item';
 
 interface FollowingProps {
-  data: Array<Follow & { following: User }>;
+  data: Array<Follow & { following: User & { stream: Stream | null } }>;
 }
 
 export function Following({ data }: FollowingProps) {
@@ -25,8 +25,8 @@ export function Following({ data }: FollowingProps) {
         </div>
       )}
       <ul className="space-y-2">
-        {data.map(({ following: { id, username, imageUrl } }) => (
-          <UserItem key={id} username={username} imageUrl={imageUrl} isLive={true} />
+        {data.map(({ following: { id, username, imageUrl, stream } }) => (
+          <UserItem key={id} username={username} imageUrl={imageUrl} isLive={stream?.isLive} />
         ))}
       </ul>
     </div>

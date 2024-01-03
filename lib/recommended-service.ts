@@ -19,12 +19,18 @@ export async function getRecommended() {
           },
         ],
       },
+      include: {
+        stream: true
+      },
       orderBy: {
         createdAt: 'desc',
       },
     });
   } else {
     return await db.user.findMany({
+      include: {
+        stream: true
+      },
       orderBy: {
         createdAt: 'desc',
       },
