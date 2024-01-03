@@ -3,6 +3,7 @@
 import { LiveKitRoom } from '@livekit/components-react';
 import { Stream, User } from '@prisma/client';
 
+import { InfoCard } from '@/components/stream-player/info-card';
 import { useViewerToken } from '@/hooks/use-viewer-token';
 import { cn } from '@/lib/utils';
 import { useChatSidebar } from '@/store/use-chat-sidebar';
@@ -50,6 +51,12 @@ export function StreamPlayer({ user, isFollowing, stream }: StreamPlayerProps) {
             imageUrl={user.imageUrl}
             isFollowing={isFollowing}
             name={stream.name}
+          />
+          <InfoCard
+            hostIdentity={user.id}
+            viewerIdentity={identity}
+            name={stream.name}
+            thumbnailUrl={stream.thumbnailUrl}
           />
         </div>
         <div className={cn('col-span-1', collapsed && 'hidden')}>
