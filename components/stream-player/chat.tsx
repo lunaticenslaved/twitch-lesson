@@ -6,6 +6,7 @@ import { useChat, useConnectionState, useRemoteParticipant } from '@livekit/comp
 import { ConnectionState } from 'livekit-client';
 import { useMediaQuery } from 'usehooks-ts';
 
+import { ChatCommunity } from '@/components/stream-player/chat-community';
 import { ChatVariant, useChatSidebar } from '@/store/use-chat-sidebar';
 
 import { ChatForm } from './chat-form';
@@ -80,9 +81,7 @@ export function Chat({
           <p>Chat mode</p>
         </>
       ) : (
-        <>
-          <p>Community mode</p>
-        </>
+        <ChatCommunity viewerName={viewerName} hostName={hostName} isHidden={isHidden} />
       )}
     </div>
   );
