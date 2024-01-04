@@ -78,7 +78,6 @@ export function Chat({
             isFollowersOnly={isChatFollowersOnly}
             isFollowing={isFollowing}
           />
-          <p>Chat mode</p>
         </>
       ) : (
         <ChatCommunity viewerName={viewerName} hostName={hostName} isHidden={isHidden} />
