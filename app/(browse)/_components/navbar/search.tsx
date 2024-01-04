@@ -3,7 +3,7 @@
 import { FormEventHandler, useCallback, useState } from 'react';
 
 import { SearchIcon, X } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import qs from 'query-string';
 
 import { Button } from '@/components/ui/button';
@@ -11,13 +11,12 @@ import { Input } from '@/components/ui/input';
 
 export function Search() {
   const router = useRouter();
-  const [search, setSearch] = useState('');
+  const searchParams = useSearchParams();
+  const [search, setSearch] = useState(searchParams.get('term') || '');
 
   const onSubmit: FormEventHandler = useCallback(
     e => {
       e.preventDefault();
-
-      if (!search) return;
 
       const url = qs.stringifyUrl(
         {
