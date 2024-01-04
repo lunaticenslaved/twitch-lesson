@@ -56,7 +56,7 @@ export function ChatForm({
   }
 
   return (
-    <form className="flex flex-col items-center gap-y-4 p-3" onSubmit={handleSubmit}>
+    <form className="flex flex-col items-center justify-end gap-y-4 p-3" onSubmit={handleSubmit}>
       <div className="w-full">
         <ChatInfo isDelayed={isDelayed} isFollowersOnly={isFollowersOnly} />
         <Input
@@ -64,7 +64,10 @@ export function ChatForm({
           value={value}
           disabled={isDisabled}
           placeholder="Send a message"
-          className={cn('border-white/10', isFollowersOnly && 'rounded-t-none border-t-0')}
+          className={cn(
+            'border-white/10',
+            (isFollowersOnly || isDelayed) && 'rounded-t-none border-t-0',
+          )}
         />
       </div>
       <div>
