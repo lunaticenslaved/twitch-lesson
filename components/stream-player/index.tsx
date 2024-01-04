@@ -16,8 +16,17 @@ import { Header, HeaderSkeleton } from './header';
 import { Video, VideoSkeleton } from './video';
 
 interface StreamPlayerProps {
-  user: User & { _count: { followedBy: number } };
-  stream: Stream;
+  user: Pick<User, 'id' | 'bio' | 'imageUrl' | 'username'> & { _count: { followedBy: number } };
+  stream: Pick<
+    Stream,
+    | 'id'
+    | 'name'
+    | 'isChatDelayed'
+    | 'isChatEnabled'
+    | 'isChatFollowersOnly'
+    | 'thumbnailUrl'
+    | 'isLive'
+  >;
   isFollowing: boolean;
 }
 
