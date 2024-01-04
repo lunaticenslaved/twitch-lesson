@@ -27,14 +27,12 @@ export async function isBlockedByUser(userId: string): Promise<boolean> {
     });
 
     return !!existingBlock;
-  } catch  {
+  } catch {
     return false;
   }
 }
 
-export async function isBlockingUser(userId: string) {
-
-}
+export async function isBlockingUser(userId: string) {}
 
 export async function blockUser(userId: string) {
   const self = await getSelf();
@@ -111,3 +109,18 @@ export async function unblockUser(userId: string) {
     include: { blocked: true },
   });
 }
+
+export const getBlockedUsers = async () => {
+  const self = await getSelf();
+
+  const blockedUsers = await db.block.findMany({
+    where: {
+      blockerId: self.id,
+    },
+    include: {
+      blocked: true,
+    },
+  });
+
+  return blockedUsers;
+};

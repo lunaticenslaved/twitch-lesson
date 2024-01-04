@@ -16,9 +16,6 @@ export async function onBlock(userId: string) {
   try {
     const self = await getSelf();
 
-    // TODO: Adapt to disconnect from livestream
-    // TODO: allow ability to kick the guest
-
     // When the user is a guest return null
     const data = await blockUser(userId).catch(() => null);
 
@@ -36,10 +33,10 @@ export async function onBlock(userId: string) {
 
 export async function onUnblock(userId: string) {
   try {
+    const self = await getSelf();
     const data = await unblockUser(userId);
 
-    revalidatePath('/');
-    revalidatePath(`/${data.blocked.username}`);
+    revalidatePath(`/u/${self.username}/community`);
 
     return data;
   } catch (error) {
